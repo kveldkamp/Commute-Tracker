@@ -23,6 +23,10 @@ class CurrentTrip: UIViewController {
     
     
     var tripInProgress = false
+    var startingLat = 0.0
+    var startingLon = 0.0
+    var destinationLat = 0.0
+    var destinationLon = 0.0
     
 
     
@@ -89,6 +93,8 @@ class CurrentTrip: UIViewController {
                 let coordinate = location.coordinate
                     UserDefaults.standard.set(coordinate.latitude, forKey: "startingLatitude")
                     UserDefaults.standard.set(coordinate.longitude, forKey: "startingLongitude")
+                    self.startingLat = coordinate.latitude
+                    self.startingLon = coordinate.longitude
                     self.searchIndicator.isHidden = true
                     self.searchIndicator.stopAnimating()
                     self.successImage.isHidden = false
@@ -110,14 +116,25 @@ class CurrentTrip: UIViewController {
                     let coordinate = location.coordinate
                     UserDefaults.standard.set(coordinate.latitude, forKey: "destinationLatitude")
                     UserDefaults.standard.set(coordinate.longitude, forKey: "destinationLongitude")
+                    self.destinationLat = coordinate.latitude
+                    self.destinationLon = coordinate.longitude
                     self.searchIndicator.isHidden = true
                     self.searchIndicator.stopAnimating()
                     self.successImage.isHidden = false
                 }
             }
         }
-        
-        
+    }
+    
+    func getTravelTimeFromGoogle(){
+        NetworkManager.getTravelTimeFromGoogle(originLat: startingLat, originLon: startingLon, destinationLat: destinationLat, destinationLon: destinationLon) { travelTime,error in
+            guard error == nil else{
+                self.displayAlert(title: "Error", message: error?.localizedDescription)
+                return
+                }
+            
+            print("\(travelTime)")
+            }
     }
     
     
@@ -128,6 +145,7 @@ class CurrentTrip: UIViewController {
         let tripStartValue = Date()
         saveCoreDataTripDate(tripDate: tripStartValue)
         UserDefaults.standard.set(tripStartValue, forKey: "tripStartValue")
+        getTravelTimeFromGoogle()
     }
     
     func endTrip(){
