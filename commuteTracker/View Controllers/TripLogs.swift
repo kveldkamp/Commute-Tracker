@@ -56,11 +56,14 @@ class TripLogs: UIViewController, UITabBarDelegate, UITableViewDataSource{
         let minutes = Int(elapsedTime) / 60 % 60
         let seconds = Int(elapsedTime) % 60
         
-        return String("\(minutes) minutes \(seconds) seconds")
+        return String("\(minutes) m \(seconds) s")
     }
     
     func displayDate(date: Date) -> String{
-        return "0"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M/dd"
+        let dateString = formatter.string(from: date)
+        return dateString
     }
     
     
@@ -74,6 +77,10 @@ class TripLogs: UIViewController, UITabBarDelegate, UITableViewDataSource{
         let trip = trips[indexPath.row]
         
         cell.elapsedTimeLabel.text = displayElapsedTime(elapsedTime: trip.timeElapsed)
+        
+        if let tripDate = trip.tripDate{ // for some reason have to always unwrap date
+            cell.dateLabel.text = displayDate(date: tripDate)
+        }
         return cell
     }
     

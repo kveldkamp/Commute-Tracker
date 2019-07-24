@@ -91,7 +91,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxY-M5-TRF">
-                                <rect key="frame" x="64" y="315.5" width="247.5" height="36"/>
+                                <rect key="frame" x="64" y="529" width="247.5" height="39"/>
                                 <color key="backgroundColor" red="0.1058823529" green="0.74117647060000003" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Start Commute">
@@ -101,18 +101,88 @@
                                     <action selector="stopStartPressed:" destination="Hrr-iu-hyk" eventType="touchUpInside" id="Hal-b9-76V"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jzR-0M-brS" userLabel="Starting Address">
+                                <rect key="frame" x="33" y="145" width="309" height="39"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" smartInsertDeleteType="no"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Vx-qf-WwT" userLabel="Destination Address">
+                                <rect key="frame" x="33" y="224" width="309" height="39"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" smartInsertDeleteType="no"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcK-8W-5jK">
+                                <rect key="frame" x="33" y="116" width="128" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.1058823529" green="0.74117647060000003" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sK9-68-8AB">
+                                <rect key="frame" x="33" y="195" width="154" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.1058823529" green="0.74117647060000003" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7N-al-MiB">
+                                <rect key="frame" x="64" y="314" width="247.5" height="39"/>
+                                <color key="backgroundColor" red="0.1058823529" green="0.74117647060000003" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="Hrr-iu-hyk" eventType="touchUpInside" id="ZYt-Pd-ULb"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Nmb-iS-DHh">
+                                <rect key="frame" x="169" y="403" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="NAf-wu-XFZ">
+                                <rect key="frame" x="155.5" y="403" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="AWh-Bl-R97"/>
+                                    <constraint firstAttribute="height" constant="64" id="hbf-wq-dDR"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Nmb-iS-DHh" firstAttribute="top" secondItem="V7N-al-MiB" secondAttribute="bottom" constant="50" id="35j-Qt-Laf"/>
+                            <constraint firstItem="tiK-Vy-oEQ" firstAttribute="bottom" secondItem="zxY-M5-TRF" secondAttribute="bottom" constant="50" id="6eW-m2-Xzh"/>
                             <constraint firstItem="zxY-M5-TRF" firstAttribute="centerX" secondItem="BuY-pw-dnB" secondAttribute="centerX" id="J0f-jX-0tO"/>
-                            <constraint firstItem="zxY-M5-TRF" firstAttribute="centerY" secondItem="BuY-pw-dnB" secondAttribute="centerY" id="WYj-It-JiO"/>
+                            <constraint firstItem="3Vx-qf-WwT" firstAttribute="height" secondItem="zxY-M5-TRF" secondAttribute="height" id="O0Y-r3-dVW"/>
+                            <constraint firstItem="V7N-al-MiB" firstAttribute="height" secondItem="zxY-M5-TRF" secondAttribute="height" id="SFP-de-CkQ"/>
+                            <constraint firstItem="wcK-8W-5jK" firstAttribute="leading" secondItem="jzR-0M-brS" secondAttribute="leading" id="SH6-2G-Xck"/>
+                            <constraint firstItem="jzR-0M-brS" firstAttribute="height" secondItem="3Vx-qf-WwT" secondAttribute="height" id="YBC-pF-nGW"/>
+                            <constraint firstItem="sK9-68-8AB" firstAttribute="leading" secondItem="3Vx-qf-WwT" secondAttribute="leading" id="ZFN-uV-OuX"/>
                             <constraint firstItem="zxY-M5-TRF" firstAttribute="width" secondItem="BuY-pw-dnB" secondAttribute="width" multiplier="0.66" id="bCg-m7-5yy"/>
+                            <constraint firstItem="Nmb-iS-DHh" firstAttribute="centerX" secondItem="BuY-pw-dnB" secondAttribute="centerX" id="cmN-0o-GHH"/>
+                            <constraint firstItem="NAf-wu-XFZ" firstAttribute="top" secondItem="V7N-al-MiB" secondAttribute="bottom" constant="50" id="dAJ-XJ-7vu"/>
+                            <constraint firstItem="jzR-0M-brS" firstAttribute="centerX" secondItem="BuY-pw-dnB" secondAttribute="centerX" id="hrg-cO-e3e"/>
+                            <constraint firstItem="jzR-0M-brS" firstAttribute="width" secondItem="3Vx-qf-WwT" secondAttribute="width" id="idp-NS-Ip4"/>
+                            <constraint firstItem="jzR-0M-brS" firstAttribute="top" secondItem="tiK-Vy-oEQ" secondAttribute="top" constant="125" id="jJH-To-MBF"/>
+                            <constraint firstItem="3Vx-qf-WwT" firstAttribute="top" secondItem="jzR-0M-brS" secondAttribute="bottom" constant="40" id="mIf-jx-yhU"/>
+                            <constraint firstItem="NAf-wu-XFZ" firstAttribute="centerX" secondItem="BuY-pw-dnB" secondAttribute="centerX" id="n24-WF-xHx"/>
+                            <constraint firstItem="jzR-0M-brS" firstAttribute="top" secondItem="wcK-8W-5jK" secondAttribute="bottom" constant="8" id="nbm-jW-ADD"/>
+                            <constraint firstItem="3Vx-qf-WwT" firstAttribute="top" secondItem="sK9-68-8AB" secondAttribute="bottom" constant="8" id="qP4-3T-se0"/>
+                            <constraint firstItem="V7N-al-MiB" firstAttribute="centerY" secondItem="BuY-pw-dnB" secondAttribute="centerY" id="s0v-xk-dPh"/>
+                            <constraint firstItem="3Vx-qf-WwT" firstAttribute="centerX" secondItem="BuY-pw-dnB" secondAttribute="centerX" id="uaF-iU-NMP"/>
+                            <constraint firstItem="V7N-al-MiB" firstAttribute="centerX" secondItem="BuY-pw-dnB" secondAttribute="centerX" id="v3w-sM-u0d"/>
+                            <constraint firstItem="3Vx-qf-WwT" firstAttribute="width" secondItem="zxY-M5-TRF" secondAttribute="width" multiplier="1.25" id="wnQ-Ym-goV"/>
+                            <constraint firstItem="V7N-al-MiB" firstAttribute="width" secondItem="zxY-M5-TRF" secondAttribute="width" id="yYG-l7-ixG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tiK-Vy-oEQ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Config" id="etH-xb-IXP"/>
                     <connections>
+                        <outlet property="destinationAddress" destination="3Vx-qf-WwT" id="d3l-wU-naD"/>
+                        <outlet property="searchButton" destination="V7N-al-MiB" id="6XX-C6-ILl"/>
+                        <outlet property="searchIndicator" destination="Nmb-iS-DHh" id="lMt-Im-fRZ"/>
                         <outlet property="startStopButton" destination="zxY-M5-TRF" id="wuQ-EU-wa2"/>
+                        <outlet property="startingAddress" destination="jzR-0M-brS" id="us6-zU-ka9"/>
+                        <outlet property="successImage" destination="NAf-wu-XFZ" id="c9I-dN-A7F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FQ-xL-2tq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -123,7 +193,7 @@
         <scene sceneID="WJE-9q-Gxq">
             <objects>
                 <tabBarController id="j7L-Ot-ELF" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TMd-CX-sgi">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="TMd-CX-sgi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -138,4 +208,7 @@
             <point key="canvasLocation" x="-126" y="4"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="checkmark" width="64" height="64"/>
+    </resources>
 </document>

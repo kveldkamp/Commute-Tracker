@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CD75F3AA22E7F30600266B1C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75F3A922E7F30600266B1C /* CoreDataManager.swift */; };
+		CD75F3AD22E8335300266B1C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75F3AC22E8335300266B1C /* Utilities.swift */; };
 		CD9B394622E5AEA1002F1AE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B394522E5AEA1002F1AE9 /* AppDelegate.swift */; };
 		CD9B394B22E5AEA1002F1AE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD9B394922E5AEA1002F1AE9 /* Main.storyboard */; };
 		CD9B394E22E5AEA1002F1AE9 /* commuteTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD9B394C22E5AEA1002F1AE9 /* commuteTracker.xcdatamodeld */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		CD75F3A922E7F30600266B1C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		CD75F3AC22E8335300266B1C /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		CD9B394222E5AEA1002F1AE9 /* commuteTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = commuteTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9B394522E5AEA1002F1AE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD9B394A22E5AEA1002F1AE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD75F3AB22E8334700266B1C /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				CD75F3AC22E8335300266B1C /* Utilities.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		CD9B393922E5AEA1002F1AE9 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +72,7 @@
 		CD9B394422E5AEA1002F1AE9 /* commuteTracker */ = {
 			isa = PBXGroup;
 			children = (
+				CD75F3AB22E8334700266B1C /* Misc */,
 				CD9B395E22E6D416002F1AE9 /* View Controllers */,
 				CD9B395D22E6D2E1002F1AE9 /* Model */,
 				CD9B395A22E6D171002F1AE9 /* Networking */,
@@ -70,7 +81,6 @@
 				CD9B394F22E5AEA6002F1AE9 /* Assets.xcassets */,
 				CD9B395122E5AEA6002F1AE9 /* LaunchScreen.storyboard */,
 				CD9B395422E5AEA6002F1AE9 /* Info.plist */,
-				CD9B394C22E5AEA1002F1AE9 /* commuteTracker.xcdatamodeld */,
 			);
 			path = commuteTracker;
 			sourceTree = "<group>";
@@ -86,6 +96,7 @@
 		CD9B395D22E6D2E1002F1AE9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CD9B394C22E5AEA1002F1AE9 /* commuteTracker.xcdatamodeld */,
 				CD75F3A922E7F30600266B1C /* CoreDataManager.swift */,
 			);
 			path = Model;
@@ -173,6 +184,7 @@
 			files = (
 				CD9B396022E6D42E002F1AE9 /* CurrentTrip.swift in Sources */,
 				CD9B396222E6FE96002F1AE9 /* TripLogs.swift in Sources */,
+				CD75F3AD22E8335300266B1C /* Utilities.swift in Sources */,
 				CD9B395C22E6D197002F1AE9 /* NetworkManager.swift in Sources */,
 				CD75F3AA22E7F30600266B1C /* CoreDataManager.swift in Sources */,
 				CD9B394622E5AEA1002F1AE9 /* AppDelegate.swift in Sources */,
