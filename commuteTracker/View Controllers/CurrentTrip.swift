@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import CoreLocation
 
-class CurrentTrip: UIViewController {
+class CurrentTrip: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var startStopButton: UIButton!
@@ -36,6 +36,18 @@ class CurrentTrip: UIViewController {
         searchButton.layer.cornerRadius = 5
         searchIndicator.isHidden = true
         successImage.isHidden = true
+        startingAddress.delegate = self
+        destinationAddress.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.unsubscribeFromKeyboardNotifications()
     }
     
     
@@ -205,6 +217,12 @@ class CurrentTrip: UIViewController {
         CoreDataManager.saveContext()
     }
     
+    
+    //UI TextField delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 
     
 }
