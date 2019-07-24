@@ -18,23 +18,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32K-1Y-OEV">
-                                <rect key="frame" x="166.5" y="323" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qv9-8m-CQA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.1058823529" green="0.74117647060000003" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TripTableViewCell" id="kHj-yl-afd" customClass="TripTableViewCell" customModule="commuteTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kHj-yl-afd" id="JZG-XG-ddk">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41n-Xy-llt" userLabel="elapsedTime">
+                                                    <rect key="frame" x="307.5" y="8.5" width="52.5" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <color key="textColor" red="0.1058823529" green="0.74117647060000003" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYY-3o-S15" userLabel="dateLabel">
+                                                    <rect key="frame" x="30" y="8.5" width="52.5" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <color key="textColor" red="0.1058823529" green="0.74117647060000003" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="41n-Xy-llt" secondAttribute="trailing" constant="15" id="NHa-mO-0LT"/>
+                                                <constraint firstItem="FYY-3o-S15" firstAttribute="leading" secondItem="JZG-XG-ddk" secondAttribute="leadingMargin" constant="15" id="caO-oR-FEf"/>
+                                                <constraint firstItem="FYY-3o-S15" firstAttribute="centerY" secondItem="JZG-XG-ddk" secondAttribute="centerY" id="o0P-09-0ye"/>
+                                                <constraint firstItem="41n-Xy-llt" firstAttribute="centerY" secondItem="JZG-XG-ddk" secondAttribute="centerY" id="wwn-vd-9FM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="FYY-3o-S15" id="0hb-5C-evK"/>
+                                            <outlet property="elapsedTimeLabel" destination="41n-Xy-llt" id="3PC-c2-MQZ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="jiT-Cl-gcO" id="hsq-r6-KrD"/>
+                                    <outlet property="delegate" destination="jiT-Cl-gcO" id="DzQ-Hx-J6h"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
-                            <constraint firstItem="32K-1Y-OEV" firstAttribute="centerX" secondItem="E1a-eK-aCN" secondAttribute="centerX" id="cWK-O3-aD4"/>
-                            <constraint firstItem="32K-1Y-OEV" firstAttribute="centerY" secondItem="E1a-eK-aCN" secondAttribute="centerY" id="zIZ-8g-L34"/>
+                            <constraint firstItem="Qv9-8m-CQA" firstAttribute="centerX" secondItem="E1a-eK-aCN" secondAttribute="centerX" id="PgC-AR-PGj"/>
+                            <constraint firstItem="Qv9-8m-CQA" firstAttribute="height" secondItem="E1a-eK-aCN" secondAttribute="height" id="QJ6-7B-Vhk"/>
+                            <constraint firstItem="Qv9-8m-CQA" firstAttribute="width" secondItem="E1a-eK-aCN" secondAttribute="width" id="Rhk-NV-ISs"/>
+                            <constraint firstItem="Qv9-8m-CQA" firstAttribute="centerY" secondItem="E1a-eK-aCN" secondAttribute="centerY" id="sZv-Rp-zQd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QHW-lr-4G0"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="yOs-s7-OYR"/>
+                    <tabBarItem key="tabBarItem" title="Logs" id="yOs-s7-OYR"/>
                     <connections>
-                        <outlet property="elapsedTimeLabel" destination="32K-1Y-OEV" id="VSB-s9-3lU"/>
+                        <outlet property="tableView" destination="Qv9-8m-CQA" id="lIa-W0-woQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oye-Ug-ctE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -60,27 +101,18 @@
                                     <action selector="stopStartPressed:" destination="Hrr-iu-hyk" eventType="touchUpInside" id="Hal-b9-76V"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cb9-BX-slw">
-                                <rect key="frame" x="166.5" y="428" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Cb9-BX-slw" firstAttribute="top" secondItem="zxY-M5-TRF" secondAttribute="bottom" constant="76.5" id="CLn-wh-Jfc"/>
                             <constraint firstItem="zxY-M5-TRF" firstAttribute="centerX" secondItem="BuY-pw-dnB" secondAttribute="centerX" id="J0f-jX-0tO"/>
                             <constraint firstItem="zxY-M5-TRF" firstAttribute="centerY" secondItem="BuY-pw-dnB" secondAttribute="centerY" id="WYj-It-JiO"/>
                             <constraint firstItem="zxY-M5-TRF" firstAttribute="width" secondItem="BuY-pw-dnB" secondAttribute="width" multiplier="0.66" id="bCg-m7-5yy"/>
-                            <constraint firstItem="Cb9-BX-slw" firstAttribute="centerX" secondItem="BuY-pw-dnB" secondAttribute="centerX" id="pVb-k8-yBs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tiK-Vy-oEQ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="etH-xb-IXP"/>
+                    <tabBarItem key="tabBarItem" title="Config" id="etH-xb-IXP"/>
                     <connections>
                         <outlet property="startStopButton" destination="zxY-M5-TRF" id="wuQ-EU-wa2"/>
-                        <outlet property="timeElapsedLabel" destination="Cb9-BX-slw" id="lJe-fN-e7v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FQ-xL-2tq" userLabel="First Responder" sceneMemberID="firstResponder"/>

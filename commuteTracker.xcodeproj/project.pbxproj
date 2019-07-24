@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		CD75F3AA22E7F30600266B1C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75F3A922E7F30600266B1C /* CoreDataManager.swift */; };
 		CD9B394622E5AEA1002F1AE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B394522E5AEA1002F1AE9 /* AppDelegate.swift */; };
-		CD9B394822E5AEA1002F1AE9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B394722E5AEA1002F1AE9 /* ViewController.swift */; };
 		CD9B394B22E5AEA1002F1AE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD9B394922E5AEA1002F1AE9 /* Main.storyboard */; };
 		CD9B394E22E5AEA1002F1AE9 /* commuteTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD9B394C22E5AEA1002F1AE9 /* commuteTracker.xcdatamodeld */; };
 		CD9B395022E5AEA6002F1AE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD9B394F22E5AEA6002F1AE9 /* Assets.xcassets */; };
@@ -23,7 +22,6 @@
 		CD75F3A922E7F30600266B1C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		CD9B394222E5AEA1002F1AE9 /* commuteTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = commuteTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9B394522E5AEA1002F1AE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CD9B394722E5AEA1002F1AE9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CD9B394A22E5AEA1002F1AE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD9B394D22E5AEA1002F1AE9 /* commuteTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = commuteTracker.xcdatamodel; sourceTree = "<group>"; };
 		CD9B394F22E5AEA6002F1AE9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 				CD9B395D22E6D2E1002F1AE9 /* Model */,
 				CD9B395A22E6D171002F1AE9 /* Networking */,
 				CD9B394522E5AEA1002F1AE9 /* AppDelegate.swift */,
-				CD9B394722E5AEA1002F1AE9 /* ViewController.swift */,
 				CD9B394922E5AEA1002F1AE9 /* Main.storyboard */,
 				CD9B394F22E5AEA6002F1AE9 /* Assets.xcassets */,
 				CD9B395122E5AEA6002F1AE9 /* LaunchScreen.storyboard */,
@@ -178,7 +175,6 @@
 				CD9B396222E6FE96002F1AE9 /* TripLogs.swift in Sources */,
 				CD9B395C22E6D197002F1AE9 /* NetworkManager.swift in Sources */,
 				CD75F3AA22E7F30600266B1C /* CoreDataManager.swift in Sources */,
-				CD9B394822E5AEA1002F1AE9 /* ViewController.swift in Sources */,
 				CD9B394622E5AEA1002F1AE9 /* AppDelegate.swift in Sources */,
 				CD9B394E22E5AEA1002F1AE9 /* commuteTracker.xcdatamodeld in Sources */,
 			);

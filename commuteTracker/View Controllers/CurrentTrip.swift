@@ -27,40 +27,85 @@ class CurrentTrip: UIViewController {
     
     @IBAction func stopStartPressed(_ sender: Any) {
         if tripInProgress{ // finish trip
-            startStopButton.setTitle("Start Commute", for: .normal)
+            DispatchQueue.main.async{
+                self.startStopButton.setTitle("Start Commute", for: .normal)
+            }
             tripInProgress = false
-            let tripEndValue = Date()
-            UserDefaults.standard.set(tripEndValue, forKey: "tripEndValue")
-            calculateTimeElapsed()
+            endTrip()
         }
         else if !tripInProgress{ //start trip
-            startStopButton.setTitle("Finish Commute", for: .normal)
+            DispatchQueue.main.async{
+                self.startStopButton.setTitle("Finish Commute", for: .normal)
+            }
             tripInProgress = true
-            let tripStartValue = Date()
-            UserDefaults.standard.set(tripStartValue, forKey: "tripStartValue")
+            startTrip()
         }
     }
+    
+    
+    
+    //methods could be refactored to be outside of this class
+    
+    func startTrip(){
+        let tripStartValue = Date()
+        saveCoreDataTripDate(tripDate: tripStartValue)
+        UserDefaults.standard.set(tripStartValue, forKey: "tripStartValue")
+    }
+    
+    func endTrip(){
+        calculateTimeElapsed()
+    }
+    
+    
     
     func calculateTimeElapsed(){
         var elapsedTime = 0.0
         let tripStartValue = UserDefaults.standard.object(forKey: "tripStartValue") as? Date
-        let tripEndValue = UserDefaults.standard.object(forKey: "tripEndValue") as? Date
+        let tripEndValue = Date()
         
-        if let tripStartValue = tripStartValue, let tripEndValue = tripEndValue{
+        if let tripStartValue = tripStartValue{
              elapsedTime = tripEndValue.timeIntervalSince(tripStartValue)
         }
-        
         saveElapsedTime(elapsedTime: elapsedTime)
-        UserDefaults.standard.set(elapsedTime, forKey: "elapsedTime")
     }
     
     
     func saveElapsedTime(elapsedTime: Double){
+        let fetchRequest:NSFetchRequest<Trip> = Trip.fetchRequest()
+        fetchRequest.sortDescriptors = []
+        
+        let tripStartValue = UserDefaults.standard.object(forKey: "tripStartValue") as? NSDate
+        if let tripStartValue = tripStartValue{
+            fetchRequest.predicate = NSPredicate(format: "tripDate = %@", tripStartValue)
+        }
+        
+        let context = CoreDataManager.getContext()
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        do {
+            try fetchedResultsController.performFetch()
+            
+        } catch {
+            let fetchError = error as NSError
+            print("Unable to Perform Fetch Request")
+            print("\(fetchError), \(fetchError.localizedDescription)")
+        }
+        if let data = fetchedResultsController.fetchedObjects, data.count > 0 {
+            print("found \(data.count) objects")
+            if let trip = data.first{
+                print("tripStartDate \(trip.tripDate!)")
+                trip.setValue(elapsedTime, forKey: "timeElapsed")
+            }
+        }
+        CoreDataManager.saveContext()
+    }
+    
+    func saveCoreDataTripDate(tripDate: Date){
         let managedContext = CoreDataManager.getContext()
         let entity = NSEntityDescription.entity(forEntityName: "Trip", in: managedContext)!
         let trip = NSManagedObject(entity: entity, insertInto: managedContext)
         
-        trip.setValue(elapsedTime, forKey: "timeElapsed")
+        trip.setValue(tripDate, forKey: "tripDate")
         CoreDataManager.saveContext()
     }
     

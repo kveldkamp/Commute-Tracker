@@ -10,30 +10,40 @@ import Foundation
 import UIKit
 import CoreData
 
-class TripLogs: UIViewController {
-    
-var elapsedTime = 0
-    
-    
-    
+class TripTableViewCell: UITableViewCell{
     @IBOutlet weak var elapsedTimeLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+}
+
+
+
+
+class TripLogs: UIViewController, UITabBarDelegate, UITableViewDataSource{
+
     
+    var trips = [Trip]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchTrips()
+        tableView.reloadData()
     }
+    
+    @IBOutlet weak var tableView: UITableView!
     
     
     
     func fetchTrips(){
         let fetchRequest: NSFetchRequest<Trip> = Trip.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "tripDate", ascending: false)
+        let sortDescriptors = [sortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
         
         do{
             let results = try CoreDataManager.getContext().fetch(fetchRequest)
-            print("found \(results.count) pins")
+            print("found \(results.count) trips")
             if results.count > 0 {
-                displayElapsedTime(elapsedTime: results.first!.timeElapsed)
+                trips = results
             }
             
         }
@@ -42,12 +52,29 @@ var elapsedTime = 0
         }
     }
     
-    
-    func displayElapsedTime(elapsedTime: Double){
-        let elapsedTime = UserDefaults.standard.integer(forKey: "elapsedTime")
+    func displayElapsedTime(elapsedTime: Double) -> String{
         let minutes = Int(elapsedTime) / 60 % 60
         let seconds = Int(elapsedTime) % 60
-        elapsedTimeLabel.text = String("\(minutes) minutes \(seconds) seconds")
+        
+        return String("\(minutes) minutes \(seconds) seconds")
+    }
+    
+    func displayDate(date: Date) -> String{
+        return "0"
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return trips.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TripTableViewCell", for: indexPath) as! TripTableViewCell
+        let trip = trips[indexPath.row]
+        
+        cell.elapsedTimeLabel.text = displayElapsedTime(elapsedTime: trip.timeElapsed)
+        return cell
     }
     
 }
