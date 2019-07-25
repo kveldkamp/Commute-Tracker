@@ -39,6 +39,21 @@ class CoreDataManager {
         }
     }
     
+    class func getFetchedControllerByDate() -> NSFetchedResultsController<Trip>{
+        let fetchRequest:NSFetchRequest<Trip> = Trip.fetchRequest()
+        fetchRequest.sortDescriptors = []
+        
+        let tripStartValue = UserDefaults.standard.object(forKey: "tripStartValue") as? NSDate
+        if let tripStartValue = tripStartValue{
+            fetchRequest.predicate = NSPredicate(format: "tripDate = %@", tripStartValue)
+        }
+        
+        let context = CoreDataManager.getContext()
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return fetchedResultsController
+    }
+    
     
     
     

@@ -18,7 +18,7 @@ class TripTableViewCell: UITableViewCell{
 
 
 
-class TripLogs: UIViewController, UITabBarDelegate, UITableViewDataSource{
+class TripLogs: UIViewController, UITabBarDelegate, UITableViewDataSource, UITableViewDelegate {
 
     
     var trips = [Trip]()
@@ -83,5 +83,29 @@ class TripLogs: UIViewController, UITabBarDelegate, UITableViewDataSource{
         }
         return cell
     }
+    
+       func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let trip = trips[indexPath.row]
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "showTripDetails", sender: trip)
+        }
+        
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        //TODO: send an NSManagedObject instead of just the coordinates
+        if segue.destination is TripDetails
+        {
+            if let vc = segue.destination as? TripDetails{
+                let selectedTrip = sender as! Trip
+                vc.selectedTrip = selectedTrip
+            }
+        }
+    }
+    
+    
+    
     
 }

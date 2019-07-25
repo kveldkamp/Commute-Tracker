@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "commuteTracker/View Controllers/CurrentTrip.swift"
-            timestampString = "585680860.073229"
+            timestampString = "585715884.536849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "commuteTracker/View Controllers/CurrentTrip.swift"
-            timestampString = "585680860.073627"
+            timestampString = "585715884.537273"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "saveElapsedTime(elapsedTime:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "commuteTracker/View Controllers/CurrentTrip.swift"
-            timestampString = "585680860.073903"
+            timestampString = "585715884.537536"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "133"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "commuteTracker/View Controllers/CurrentTrip.swift"
-            timestampString = "585680860.074167"
+            timestampString = "585715884.5378"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
@@ -73,13 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "commuteTracker/Networking/NetworkManager.swift"
-            timestampString = "585650623.1222661"
+            filePath = "commuteTracker/View Controllers/TripLogs.swift"
+            timestampString = "585715884.538062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "buildRequest(_:)"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,46 +89,30 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "commuteTracker/Networking/NetworkManager.swift"
-            timestampString = "585650623.123179"
+            filePath = "commuteTracker/View Controllers/CurrentTrip.swift"
+            timestampString = "585715884.538121"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "getTravelTimeFromGoogle(originLat:originLon:destinationLat:destinationLon:completion:)"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "saveGoogleRouteTime(googleTime:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static commuteTracker.NetworkManager.getTravelTimeFromGoogle(originLat: Swift.Double, originLon: Swift.Double, destinationLat: Swift.Double, destinationLon: Swift.Double, completion: (Swift.Int, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "commuteTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kevinveldkamp/Documents/Udacity/Projects/commuteTracker/commuteTracker/Networking/NetworkManager.swift"
-                  timestampString = "585650481.198169"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "1465">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;commuteTracker.DistanceResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in static commuteTracker.NetworkManager.getTravelTimeFromGoogle(originLat: Swift.Double, originLon: Swift.Double, destinationLat: Swift.Double, destinationLon: Swift.Double, completion: (Swift.Int, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "commuteTracker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kevinveldkamp/Documents/Udacity/Projects/commuteTracker/commuteTracker/Networking/NetworkManager.swift"
-                  timestampString = "585650481.199991"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28"
-                  offsetFromSymbolStart = "45">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "commuteTracker/View Controllers/TripLogs.swift"
+            timestampString = "585715884.538371"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

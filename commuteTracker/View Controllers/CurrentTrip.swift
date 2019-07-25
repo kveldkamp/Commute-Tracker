@@ -139,13 +139,16 @@ class CurrentTrip: UIViewController, UITextFieldDelegate {
     }
     
     func getTravelTimeFromGoogle(){
+        guard startingLat != 0.0 else{
+            displayAlert(title: "Error", message: "Wasn't able to get directions with those addresses, please try again")
+            return
+        }
         NetworkManager.getTravelTimeFromGoogle(originLat: startingLat, originLon: startingLon, destinationLat: destinationLat, destinationLon: destinationLon) { travelTime,error in
             guard error == nil else{
                 self.displayAlert(title: "Error", message: error?.localizedDescription)
                 return
                 }
-            
-            print("\(travelTime)")
+            self.saveGoogleRouteTime(googleTime: travelTime)
             }
     }
     
@@ -178,17 +181,10 @@ class CurrentTrip: UIViewController, UITextFieldDelegate {
     }
     
     
+    
+    
     func saveElapsedTime(elapsedTime: Double){
-        let fetchRequest:NSFetchRequest<Trip> = Trip.fetchRequest()
-        fetchRequest.sortDescriptors = []
-        
-        let tripStartValue = UserDefaults.standard.object(forKey: "tripStartValue") as? NSDate
-        if let tripStartValue = tripStartValue{
-            fetchRequest.predicate = NSPredicate(format: "tripDate = %@", tripStartValue)
-        }
-        
-        let context = CoreDataManager.getContext()
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchedResultsController = CoreDataManager.getFetchedControllerByDate()
         
         do {
             try fetchedResultsController.performFetch()
@@ -203,6 +199,27 @@ class CurrentTrip: UIViewController, UITextFieldDelegate {
             if let trip = data.first{ // should only find one match, with the exact start time timestamp, but just in case grab the first one
                 print("tripStartDate \(trip.tripDate!)")
                 trip.setValue(elapsedTime, forKey: "timeElapsed")
+            }
+        }
+        CoreDataManager.saveContext()
+    }
+    
+    func saveGoogleRouteTime(googleTime: Int){
+        let fetchedResultsController = CoreDataManager.getFetchedControllerByDate()
+        
+        do {
+            try fetchedResultsController.performFetch()
+            
+        } catch {
+            let fetchError = error as NSError
+            print("Unable to Perform Fetch Request")
+            print("\(fetchError), \(fetchError.localizedDescription)")
+        }
+        if let data = fetchedResultsController.fetchedObjects, data.count > 0 {
+            print("found \(data.count) objects")
+            if let trip = data.first{ // should only find one match, with the exact start time timestamp, but just in case grab the first one
+                print("tripStartDate \(trip.tripDate!)")
+                trip.setValue(googleTime, forKey: "googleTime")
             }
         }
         CoreDataManager.saveContext()
