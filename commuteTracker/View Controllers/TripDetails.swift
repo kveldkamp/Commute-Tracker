@@ -14,6 +14,8 @@ class TripDetails: UIViewController{
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var googleEstimateLabel: UILabel!
     @IBOutlet weak var actualTimeLabel: UILabel!
+    @IBOutlet weak var startTimeLabel: UILabel!
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +42,7 @@ class TripDetails: UIViewController{
         if let trip = selectedTrip{
             self.googleEstimateLabel.text = displayElapsedTime(elapsedTime: trip.googleTime)
             self.actualTimeLabel.text = displayElapsedTime(elapsedTime: trip.timeElapsed)
+            self.startTimeLabel.text = displayAmpmTime(date: trip.tripDate!)
         }
     }
     
@@ -48,6 +51,13 @@ class TripDetails: UIViewController{
         let seconds = Int(elapsedTime) % 60
         
         return String("\(minutes) m \(seconds) s")
+    }
+    
+    func displayAmpmTime(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        let dateString = dateFormatter.string(from: date)
+        return dateString
     }
     
 
