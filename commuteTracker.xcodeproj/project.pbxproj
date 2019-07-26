@@ -12,13 +12,15 @@
 		CD75F3AF22E83C6300266B1C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75F3AE22E83C6300266B1C /* Constants.swift */; };
 		CD75F3B122E83F2E00266B1C /* DistanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75F3B022E83F2E00266B1C /* DistanceResponse.swift */; };
 		CD8AEEF722E9461300A8DD76 /* TripDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8AEEF622E9461300A8DD76 /* TripDetails.swift */; };
+		CD8AEEF922EAC60B00A8DD76 /* StartTripVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8AEEF822EAC60B00A8DD76 /* StartTripVC.swift */; };
+		CD8AEEFB22EAC6D000A8DD76 /* TripTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8AEEFA22EAC6D000A8DD76 /* TripTracker.swift */; };
 		CD9B394622E5AEA1002F1AE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B394522E5AEA1002F1AE9 /* AppDelegate.swift */; };
 		CD9B394B22E5AEA1002F1AE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD9B394922E5AEA1002F1AE9 /* Main.storyboard */; };
 		CD9B394E22E5AEA1002F1AE9 /* commuteTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD9B394C22E5AEA1002F1AE9 /* commuteTracker.xcdatamodeld */; };
 		CD9B395022E5AEA6002F1AE9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD9B394F22E5AEA6002F1AE9 /* Assets.xcassets */; };
 		CD9B395322E5AEA6002F1AE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD9B395122E5AEA6002F1AE9 /* LaunchScreen.storyboard */; };
 		CD9B395C22E6D197002F1AE9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B395B22E6D197002F1AE9 /* NetworkManager.swift */; };
-		CD9B396022E6D42E002F1AE9 /* CurrentTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B395F22E6D42E002F1AE9 /* CurrentTrip.swift */; };
+		CD9B396022E6D42E002F1AE9 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B395F22E6D42E002F1AE9 /* SettingsVC.swift */; };
 		CD9B396222E6FE96002F1AE9 /* TripLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9B396122E6FE96002F1AE9 /* TripLogs.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,8 @@
 		CD75F3AE22E83C6300266B1C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CD75F3B022E83F2E00266B1C /* DistanceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceResponse.swift; sourceTree = "<group>"; };
 		CD8AEEF622E9461300A8DD76 /* TripDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetails.swift; sourceTree = "<group>"; };
+		CD8AEEF822EAC60B00A8DD76 /* StartTripVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTripVC.swift; sourceTree = "<group>"; };
+		CD8AEEFA22EAC6D000A8DD76 /* TripTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTracker.swift; sourceTree = "<group>"; };
 		CD9B394222E5AEA1002F1AE9 /* commuteTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = commuteTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9B394522E5AEA1002F1AE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD9B394A22E5AEA1002F1AE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -36,7 +40,7 @@
 		CD9B395222E5AEA6002F1AE9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD9B395422E5AEA6002F1AE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD9B395B22E6D197002F1AE9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		CD9B395F22E6D42E002F1AE9 /* CurrentTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentTrip.swift; sourceTree = "<group>"; };
+		CD9B395F22E6D42E002F1AE9 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		CD9B396122E6FE96002F1AE9 /* TripLogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +60,7 @@
 			children = (
 				CD75F3AC22E8335300266B1C /* Utilities.swift */,
 				CD75F3AE22E83C6300266B1C /* Constants.swift */,
+				CD8AEEFA22EAC6D000A8DD76 /* TripTracker.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -121,9 +126,10 @@
 		CD9B395E22E6D416002F1AE9 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CD9B395F22E6D42E002F1AE9 /* CurrentTrip.swift */,
+				CD9B395F22E6D42E002F1AE9 /* SettingsVC.swift */,
 				CD9B396122E6FE96002F1AE9 /* TripLogs.swift */,
 				CD8AEEF622E9461300A8DD76 /* TripDetails.swift */,
+				CD8AEEF822EAC60B00A8DD76 /* StartTripVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -199,16 +205,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD9B396022E6D42E002F1AE9 /* CurrentTrip.swift in Sources */,
+				CD9B396022E6D42E002F1AE9 /* SettingsVC.swift in Sources */,
 				CD8AEEF722E9461300A8DD76 /* TripDetails.swift in Sources */,
 				CD9B396222E6FE96002F1AE9 /* TripLogs.swift in Sources */,
 				CD75F3B122E83F2E00266B1C /* DistanceResponse.swift in Sources */,
 				CD75F3AD22E8335300266B1C /* Utilities.swift in Sources */,
 				CD9B395C22E6D197002F1AE9 /* NetworkManager.swift in Sources */,
 				CD75F3AA22E7F30600266B1C /* CoreDataManager.swift in Sources */,
+				CD8AEEF922EAC60B00A8DD76 /* StartTripVC.swift in Sources */,
 				CD9B394622E5AEA1002F1AE9 /* AppDelegate.swift in Sources */,
 				CD9B394E22E5AEA1002F1AE9 /* commuteTracker.xcdatamodeld in Sources */,
 				CD75F3AF22E83C6300266B1C /* Constants.swift in Sources */,
+				CD8AEEFB22EAC6D000A8DD76 /* TripTracker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

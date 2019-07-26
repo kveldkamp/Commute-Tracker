@@ -23,6 +23,12 @@ class TripLogs: UIViewController, UITabBarDelegate, UITableViewDataSource, UITab
     
     var trips = [Trip]()
     
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchTrips()

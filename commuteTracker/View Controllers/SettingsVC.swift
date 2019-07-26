@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 import CoreLocation
 
-class CurrentTrip: UIViewController, UITextFieldDelegate {
+class SettingsVC: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var startStopButton: UIButton!
@@ -28,6 +28,9 @@ class CurrentTrip: UIViewController, UITextFieldDelegate {
     var destinationLat = 0.0
     var destinationLon = 0.0
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     
     override func viewDidLoad(){
@@ -43,6 +46,8 @@ class CurrentTrip: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.subscribeToKeyboardNotifications()
+        searchIndicator.isHidden = true
+        successImage.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -77,19 +82,20 @@ class CurrentTrip: UIViewController, UITextFieldDelegate {
                 self.startStopButton.setTitle("Start Commute", for: .normal)
             }
             tripInProgress = false
-            endTrip()
+            TripTracker.sharedInstance.endTrip()
         }
         else if !tripInProgress{ //start trip
             DispatchQueue.main.async{
                 self.startStopButton.setTitle("Finish Commute", for: .normal)
             }
             tripInProgress = true
-            startTrip()
+            TripTracker.sharedInstance.startTrip()
         }
     }
     
     
     func geocodeLocations(startingAddress: String, destinationAddress: String){
+        
         //starting location search
         CLGeocoder().geocodeAddressString(startingAddress) { (placemarks, error) in
         guard error == nil else{
@@ -105,8 +111,7 @@ class CurrentTrip: UIViewController, UITextFieldDelegate {
                 let coordinate = location.coordinate
                     UserDefaults.standard.set(coordinate.latitude, forKey: "startingLatitude")
                     UserDefaults.standard.set(coordinate.longitude, forKey: "startingLongitude")
-                    self.startingLat = coordinate.latitude
-                    self.startingLon = coordinate.longitude
+                    UserDefaults.standard.set(startingAddress, forKey: "startingAddressString")
                     self.searchIndicator.isHidden = true
                     self.searchIndicator.stopAnimating()
                     self.successImage.isHidden = false
@@ -128,8 +133,7 @@ class CurrentTrip: UIViewController, UITextFieldDelegate {
                     let coordinate = location.coordinate
                     UserDefaults.standard.set(coordinate.latitude, forKey: "destinationLatitude")
                     UserDefaults.standard.set(coordinate.longitude, forKey: "destinationLongitude")
-                    self.destinationLat = coordinate.latitude
-                    self.destinationLon = coordinate.longitude
+                    UserDefaults.standard.set(destinationAddress, forKey: "destinationAddressString")
                     self.searchIndicator.isHidden = true
                     self.searchIndicator.stopAnimating()
                     self.successImage.isHidden = false
@@ -138,103 +142,9 @@ class CurrentTrip: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func getTravelTimeFromGoogle(){
-        guard startingLat != 0.0 else{
-            displayAlert(title: "Error", message: "Wasn't able to get directions with those addresses, please try again")
-            return
-        }
-        NetworkManager.getTravelTimeFromGoogle(originLat: startingLat, originLon: startingLon, destinationLat: destinationLat, destinationLon: destinationLon) { travelTime,error in
-            guard error == nil else{
-                self.displayAlert(title: "Error", message: error?.localizedDescription)
-                return
-                }
-            self.saveGoogleRouteTime(googleTime: travelTime)
-            }
-    }
     
     
-    
-    //methods could be refactored to be outside of this class
-    
-    func startTrip(){
-        let tripStartValue = Date()
-        saveCoreDataTripDate(tripDate: tripStartValue)
-        UserDefaults.standard.set(tripStartValue, forKey: "tripStartValue")
-        getTravelTimeFromGoogle()
-    }
-    
-    func endTrip(){
-        calculateTimeElapsed()
-    }
-    
-    
-    
-    func calculateTimeElapsed(){
-        var elapsedTime = 0.0
-        let tripStartValue = UserDefaults.standard.object(forKey: "tripStartValue") as? Date
-        let tripEndValue = Date()
-        
-        if let tripStartValue = tripStartValue{
-             elapsedTime = tripEndValue.timeIntervalSince(tripStartValue)
-        }
-        saveElapsedTime(elapsedTime: elapsedTime)
-    }
-    
-    
-    
-    
-    func saveElapsedTime(elapsedTime: Double){
-        let fetchedResultsController = CoreDataManager.getFetchedControllerByDate()
-        
-        do {
-            try fetchedResultsController.performFetch()
-            
-        } catch {
-            let fetchError = error as NSError
-            print("Unable to Perform Fetch Request")
-            print("\(fetchError), \(fetchError.localizedDescription)")
-        }
-        if let data = fetchedResultsController.fetchedObjects, data.count > 0 {
-            print("found \(data.count) objects")
-            if let trip = data.first{ // should only find one match, with the exact start time timestamp, but just in case grab the first one
-                print("tripStartDate \(trip.tripDate!)")
-                trip.setValue(elapsedTime, forKey: "timeElapsed")
-            }
-        }
-        CoreDataManager.saveContext()
-    }
-    
-    func saveGoogleRouteTime(googleTime: Int){
-        let fetchedResultsController = CoreDataManager.getFetchedControllerByDate()
-        
-        do {
-            try fetchedResultsController.performFetch()
-            
-        } catch {
-            let fetchError = error as NSError
-            print("Unable to Perform Fetch Request")
-            print("\(fetchError), \(fetchError.localizedDescription)")
-        }
-        if let data = fetchedResultsController.fetchedObjects, data.count > 0 {
-            print("found \(data.count) objects")
-            if let trip = data.first{ // should only find one match, with the exact start time timestamp, but just in case grab the first one
-                print("tripStartDate \(trip.tripDate!)")
-                trip.setValue(googleTime, forKey: "googleTime")
-            }
-        }
-        CoreDataManager.saveContext()
-    }
-    
-    func saveCoreDataTripDate(tripDate: Date){
-        let managedContext = CoreDataManager.getContext()
-        let entity = NSEntityDescription.entity(forEntityName: "Trip", in: managedContext)!
-        let trip = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        trip.setValue(tripDate, forKey: "tripDate")
-        CoreDataManager.saveContext()
-    }
-    
-    
+   
     //UI TextField delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
