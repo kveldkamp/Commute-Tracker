@@ -14,12 +14,17 @@ import CoreLocation
 class SettingsVC: UIViewController, UITextFieldDelegate {
     
     
-    @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var startingAddress: UITextField!
     @IBOutlet weak var destinationAddress: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var searchIndicator: UIActivityIndicatorView!
     @IBOutlet weak var successImage: UIImageView!
+    @IBOutlet weak var commuteInfoView: UIView!
+    
+    @IBOutlet weak var morningStartingAddressLabel: UILabel!
+    @IBOutlet weak var morningEndingAddressLabel: UILabel!
+    @IBOutlet weak var eveningStartingAddressLabel: UILabel!
+    @IBOutlet weak var eveningEndingAddressLabel: UILabel!
     
     
     var tripInProgress = false
@@ -35,12 +40,15 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        startStopButton.layer.cornerRadius = 5
         searchButton.layer.cornerRadius = 5
         searchIndicator.isHidden = true
         successImage.isHidden = true
         startingAddress.delegate = self
         destinationAddress.delegate = self
+        startingAddress.autocorrectionType = .no
+        destinationAddress.autocorrectionType = .no
+        startingAddress.autocapitalizationType = .none
+        destinationAddress.autocapitalizationType = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +56,7 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
         self.subscribeToKeyboardNotifications()
         searchIndicator.isHidden = true
         successImage.isHidden = true
+        commuteInfoView.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -57,6 +66,8 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func searchButtonPressed(_ sender: Any) {
+        destinationAddress.resignFirstResponder()
+        startingAddress.resignFirstResponder()
         successImage.isHidden = true
         searchIndicator.isHidden = false
         searchIndicator.startAnimating()
@@ -74,23 +85,6 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
             geocodeLocations(startingAddress: startingAddress.text!, destinationAddress: destinationAddress.text!)
         }
         
-    }
-    
-    @IBAction func stopStartPressed(_ sender: Any) {
-        if tripInProgress{ // finish trip
-            DispatchQueue.main.async{
-                self.startStopButton.setTitle("Start Commute", for: .normal)
-            }
-            tripInProgress = false
-            TripTracker.sharedInstance.endTrip()
-        }
-        else if !tripInProgress{ //start trip
-            DispatchQueue.main.async{
-                self.startStopButton.setTitle("Finish Commute", for: .normal)
-            }
-            tripInProgress = true
-            TripTracker.sharedInstance.startTrip()
-        }
     }
     
     
@@ -115,6 +109,9 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
                     self.searchIndicator.isHidden = true
                     self.searchIndicator.stopAnimating()
                     self.successImage.isHidden = false
+                    self.commuteInfoView.isHidden = false
+                    self.morningStartingAddressLabel.text = startingAddress
+                    self.eveningEndingAddressLabel.text = startingAddress
                 }
             }
         }
@@ -137,6 +134,9 @@ class SettingsVC: UIViewController, UITextFieldDelegate {
                     self.searchIndicator.isHidden = true
                     self.searchIndicator.stopAnimating()
                     self.successImage.isHidden = false
+                    self.commuteInfoView.isHidden = false
+                    self.morningEndingAddressLabel.text = destinationAddress
+                    self.eveningStartingAddressLabel.text = destinationAddress
                 }
             }
         }

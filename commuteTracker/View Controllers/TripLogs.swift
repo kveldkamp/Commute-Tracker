@@ -13,6 +13,8 @@ import CoreData
 class TripTableViewCell: UITableViewCell{
     @IBOutlet weak var elapsedTimeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dayNNiteImageView: UIImageView!
+    
 }
 
 
@@ -74,6 +76,35 @@ class TripLogs: UIViewController, UITabBarDelegate, UITableViewDataSource, UITab
     
     
     
+    func isMorningTrip(trip: Trip) -> Bool{
+        let calendar = Calendar.current
+        if let tripDate = trip.tripDate{
+            let fourThirtyAM = calendar.date(
+                bySettingHour: 4,
+                minute: 30,
+                second: 0,
+                of: tripDate)!
+            
+            let elevenThirtyAM = calendar.date(
+                bySettingHour: 11,
+                minute: 30,
+                second: 0,
+                of: tripDate)!
+            
+            if tripDate >= fourThirtyAM &&
+                tripDate <= elevenThirtyAM
+            {
+                return true
+            }
+            
+            return false
+        }
+        return true
+    }
+        
+    
+    //UITableView DataSource and Delegate Calls
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return trips.count
     }
@@ -86,6 +117,13 @@ class TripLogs: UIViewController, UITabBarDelegate, UITableViewDataSource, UITab
         
         if let tripDate = trip.tripDate{ // for some reason have to always unwrap date
             cell.dateLabel.text = displayDate(date: tripDate)
+        }
+        
+        if isMorningTrip(trip: trip){
+            cell.dayNNiteImageView.image = UIImage(named: "sunrise.png")
+        }
+        else{
+            cell.dayNNiteImageView.image = UIImage(named: "sunset.png")
         }
         return cell
     }

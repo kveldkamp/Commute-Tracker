@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 
 
@@ -18,10 +19,23 @@ class TripTracker{
      private init(){}
     
     func getTravelTimeFromGoogle(){
-        let startingLat = UserDefaults.standard.double(forKey: "startingLatitude")
-        let startingLon = UserDefaults.standard.double(forKey: "startingLongitude")
-        let destinationLat = UserDefaults.standard.double(forKey: "destinationLatitude")
-        let destinationLon = UserDefaults.standard.double(forKey: "destinationLongitude")
+        var startingLat = 0.0
+        var startingLon = 0.0
+        var destinationLat = 0.0
+        var destinationLon = 0.0
+        
+        if isMorningTrip(){
+            startingLat = UserDefaults.standard.double(forKey: "startingLatitude")
+            startingLon = UserDefaults.standard.double(forKey: "startingLongitude")
+            destinationLat = UserDefaults.standard.double(forKey: "destinationLatitude")
+            destinationLon = UserDefaults.standard.double(forKey: "destinationLongitude")
+        }
+        else {
+            startingLat = UserDefaults.standard.double(forKey: "destinationLatitude")
+            startingLon = UserDefaults.standard.double(forKey: "destinationLongitude")
+            destinationLat = UserDefaults.standard.double(forKey: "startingLatitude")
+            destinationLon = UserDefaults.standard.double(forKey: "startingLongitude")
+        }
         
         NetworkManager.getTravelTimeFromGoogle(originLat: startingLat, originLon: startingLon, destinationLat: destinationLat, destinationLon: destinationLon) { travelTime,error in
             guard error == nil else{
@@ -112,6 +126,31 @@ class TripTracker{
         
         trip.setValue(tripDate, forKey: "tripDate")
         CoreDataManager.saveContext()
+    }
+    
+    
+    func isMorningTrip() -> Bool{
+        let calendar = Calendar.current
+        let now = Date()
+        let fourThirtyAM = calendar.date(
+            bySettingHour: 4,
+            minute: 30,
+            second: 0,
+            of: now)!
+        
+        let elevenThirtyAM = calendar.date(
+            bySettingHour: 11,
+            minute: 30,
+            second: 0,
+            of: now)!
+        
+        if now >= fourThirtyAM &&
+            now <= elevenThirtyAM
+        {
+            return true
+        }
+        
+        return false
     }
     
     
