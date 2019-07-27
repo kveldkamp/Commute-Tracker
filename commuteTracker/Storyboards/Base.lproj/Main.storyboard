@@ -181,7 +181,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kLV-LM-Yyu"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="start" image="paper-plane-7" id="oCR-cF-FPM"/>
+                    <tabBarItem key="tabBarItem" title="Start" image="paper-plane-7" id="oCR-cF-FPM"/>
                     <connections>
                         <outlet property="destinationLocationLabel" destination="yg0-UQ-k9N" id="tnI-fu-4kJ"/>
                         <outlet property="startStopButton" destination="yh7-sZ-MtS" id="3Dg-Ap-1pg"/>
