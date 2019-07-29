@@ -28,6 +28,10 @@ class StartTripVC: UIViewController {
         loadUI()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     
     
     @IBAction func startStopButtonAction(_ sender: Any) {

@@ -26,6 +26,10 @@ class TripDetails: UIViewController{
         loadData()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var selectedTrip: Trip!
     
     
