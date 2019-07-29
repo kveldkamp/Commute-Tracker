@@ -15,3 +15,7 @@ when it started and how long google maps thought it would take at the time.
 # Future Improvements
 Hoping to add functionality to kick off a trip session by when the phone connects to bluetooth, so that you don't have to 
 remember to press start and end trip.
+
+Improvements to check location when starting the trip to make sure the trip is going to be a commute, rather than any other trip in the car
+
+Insights tab to track how much time you're taking in the car, suggestions of when to leave, and other info in a new tab.
